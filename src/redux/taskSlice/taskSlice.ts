@@ -33,7 +33,7 @@ export const taskSlice = createSlice({
       });
     },
     deleteTask(state: any) {
-      state.task = [];
+        state.task = state.task.filter((obj: any) => !obj.completed)
     },
     filterActiveTask(state: any) {
       state.filterBy = "Active";
