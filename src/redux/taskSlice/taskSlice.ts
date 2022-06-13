@@ -44,13 +44,23 @@ export const taskSlice = createSlice({
     filterAllTask(state: any) {
       state.filterBy = "All";
     },
+    checkbox(state: any, action: any) {
+      state.task.map((obj: any) => {
+        if (obj.id === action.payload) {
+          obj.completed = !obj.completed;
+        }
+      });
+    },
   },
 });
+
 export const {
   addTask,
   deleteTask,
   filterActiveTask,
   filterCompletedTask,
   filterAllTask,
+  checkbox,
 } = taskSlice.actions;
+
 export default taskSlice.reducer;

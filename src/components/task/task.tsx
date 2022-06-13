@@ -2,9 +2,12 @@ import { FC } from "react";
 import "./task.scss";
 import Checkbox from "@mui/material/Checkbox";
 import { useTypesSelector } from "../../hook/useTypeSelector";
+import { checkbox } from "../../redux/taskSlice/taskSlice";
+import { useDispatch } from "react-redux";
 
 export const Task: FC = () => {
   const { task, filterBy } = useTypesSelector((state) => state.taskReducer);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -24,7 +27,7 @@ export const Task: FC = () => {
         })
         .map((task) => (
           <div key={task.id} className="task">
-            {task.completed ? <Checkbox defaultChecked /> : <Checkbox />}
+             <Checkbox checked={task.completed} onChange={()=> dispatch(checkbox(task.id))} />
             <div
               className={task.completed ? "task__text completed" : "task__text"}
             >
