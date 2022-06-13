@@ -1,13 +1,16 @@
 import { FC } from "react";
-import { initialState } from "../../redux/taskSlice/taskSlice";
 import "./task.scss";
 import Checkbox from "@mui/material/Checkbox";
+import { useTypesSelector } from "../../hook/useTypeSelector";
 
 export const Task: FC = () => {
+  
+  const {task} = useTypesSelector((state) => state.taskReducer)
+
   return (
     <>
-      {initialState.map((task) => (
-        <div id={task.id} className="task">
+      {task.map((task) => (
+        <div key={task.id} className="task">
           {task.completed ? <Checkbox defaultChecked /> : <Checkbox />}
           <div
             className={task.completed ? "task__text completed" : "task__text"}

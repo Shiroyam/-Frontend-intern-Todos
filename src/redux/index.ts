@@ -1,6 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import taskReducer from "./taskSlice/taskSlice";
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  taskReducer,
+});
 
 export const storeSetup = () => {
   return configureStore({
