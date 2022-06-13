@@ -31,7 +31,10 @@ export const taskSlice = createSlice({
         id: Math.random()
       })
     },
+    deleteTask(state: any){
+        state.task = [];
+    }
   },
 });
-export const { addTask } = taskSlice.actions;
+export const { addTask, deleteTask } = taskSlice.actions;
 export default taskSlice.reducer;
