@@ -18,6 +18,7 @@ const initialState = {
       id: "3",
     },
   ],
+  filterBy: "All",
 };
 
 export const taskSlice = createSlice({
@@ -28,13 +29,28 @@ export const taskSlice = createSlice({
       state.task.push({
         name: action.payload,
         completed: false,
-        id: Math.random()
-      })
+        id: Math.random(),
+      });
     },
-    deleteTask(state: any){
-        state.task = [];
-    }
+    deleteTask(state: any) {
+      state.task = [];
+    },
+    filterActiveTask(state: any) {
+      state.filterBy = "Active";
+    },
+    filterCompletedTask(state: any) {
+      state.filterBy = "Completed";
+    },
+    filterAllTask(state: any) {
+      state.filterBy = "All";
+    },
   },
 });
-export const { addTask, deleteTask } = taskSlice.actions;
+export const {
+  addTask,
+  deleteTask,
+  filterActiveTask,
+  filterCompletedTask,
+  filterAllTask,
+} = taskSlice.actions;
 export default taskSlice.reducer;

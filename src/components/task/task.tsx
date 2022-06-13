@@ -4,21 +4,34 @@ import Checkbox from "@mui/material/Checkbox";
 import { useTypesSelector } from "../../hook/useTypeSelector";
 
 export const Task: FC = () => {
-  
-  const {task} = useTypesSelector((state) => state.taskReducer)
+  const { task, filterBy } = useTypesSelector((state) => state.taskReducer);
 
   return (
     <>
-      {task.map((task) => (
-        <div key={task.id} className="task">
-          {task.completed ? <Checkbox defaultChecked /> : <Checkbox />}
-          <div
-            className={task.completed ? "task__text completed" : "task__text"}
-          >
-            {task.name}
+      {task
+        .filter((task) => {
+          if (filterBy === "All") {
+            return true;
+          }
+
+          if (filterBy === "Completed") {
+            return task.completed;
+          }
+
+          if (filterBy === "Active") {
+            return !task.completed;
+          }
+        })
+        .map((task) => (
+          <div key={task.id} className="task">
+            {task.completed ? <Checkbox defaultChecked /> : <Checkbox />}
+            <div
+              className={task.completed ? "task__text completed" : "task__text"}
+            >
+              {task.name}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
     </>
   );
 };
