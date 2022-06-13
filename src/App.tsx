@@ -1,10 +1,12 @@
-import { Footer } from "./components/footer";
-import { Input } from "./components/Input";
-import { Task } from "./components/task";
+import { Footer } from "./components/footer/footer";
+import { Input } from "./components/input/Input";
+import { Task } from "./components/task/task";
+import "./app.scss"
 
 function App() {
   return (
     <div className="App">
+      <header className="App__header">todos</header>
       <Input />
       <Task />
       <Footer />
