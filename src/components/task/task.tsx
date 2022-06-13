@@ -6,35 +6,43 @@ import { checkbox } from "../../redux/taskSlice/taskSlice";
 import { useDispatch } from "react-redux";
 
 export const Task: FC = () => {
-  const { task, filterBy } = useTypesSelector((state) => state.taskReducer);
+  const { task, filterBy, flagTask } = useTypesSelector(
+    (state) => state.taskReducer
+  );
   const dispatch = useDispatch();
 
   return (
     <>
-      {task
-        .filter((task) => {
-          if (filterBy === "All") {
-            return true;
-          }
+      {flagTask &&
+        task
+          .filter((task) => {
+            if (filterBy === "All") {
+              return true;
+            }
 
-          if (filterBy === "Completed") {
-            return task.completed;
-          }
+            if (filterBy === "Completed") {
+              return task.completed;
+            }
 
-          if (filterBy === "Active") {
-            return !task.completed;
-          }
-        })
-        .map((task) => (
-          <div key={task.id} className="task">
-             <Checkbox checked={task.completed} onChange={()=> dispatch(checkbox(task.id))} />
-            <div
-              className={task.completed ? "task__text completed" : "task__text"}
-            >
-              {task.name}
+            if (filterBy === "Active") {
+              return !task.completed;
+            }
+          })
+          .map((task) => (
+            <div key={task.id} className="task">
+              <Checkbox
+                checked={task.completed}
+                onChange={() => dispatch(checkbox(task.id))}
+              />
+              <div
+                className={
+                  task.completed ? "task__text completed" : "task__text"
+                }
+              >
+                {task.name}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
     </>
   );
 };

@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { addTask } from "../../redux/taskSlice/taskSlice";
+import { addTask, showTask } from "../../redux/taskSlice/taskSlice";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import Button from "@mui/material/Button";
@@ -11,12 +11,18 @@ export const Input: FC = () => {
   const [value, setValue] = useState("");
   const dispatch = useDispatch();
 
+  const clickArrow = (e: any) => {
+    e.preventDefault();
+    setArrow(!arrow);
+    dispatch(showTask());
+  };
+
   return (
     <label>
-      {arrow ? (
-        <ArrowDropUpIcon onClick={() => setArrow(false)} className="arrow" />
+      {!arrow ? (
+        <ArrowDropUpIcon onClick={clickArrow} className="arrow" />
       ) : (
-        <ArrowDropDownIcon onClick={() => setArrow(true)} className="arrow" />
+        <ArrowDropDownIcon onClick={clickArrow} className="arrow" />
       )}
       <Button
         onClick={() => (dispatch(addTask(value)), setValue(""))}

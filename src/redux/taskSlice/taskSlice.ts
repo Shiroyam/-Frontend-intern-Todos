@@ -19,6 +19,7 @@ const initialState = {
     },
   ],
   filterBy: "All",
+  flagTask: true,
 };
 
 export const taskSlice = createSlice({
@@ -33,7 +34,7 @@ export const taskSlice = createSlice({
       });
     },
     deleteTask(state: any) {
-        state.task = state.task.filter((obj: any) => !obj.completed)
+      state.task = state.task.filter((obj: any) => !obj.completed);
     },
     filterActiveTask(state: any) {
       state.filterBy = "Active";
@@ -51,6 +52,9 @@ export const taskSlice = createSlice({
         }
       });
     },
+    showTask(state: any) {
+      state.flagTask = !state.flagTask;
+    },
   },
 });
 
@@ -61,6 +65,7 @@ export const {
   filterCompletedTask,
   filterAllTask,
   checkbox,
+  showTask,
 } = taskSlice.actions;
 
 export default taskSlice.reducer;
