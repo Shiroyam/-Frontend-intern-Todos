@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import taskReducer from "./taskSlice/taskSlice";
+import toggleReducer from "./toggleSlice/toggleSlice"
 
 const rootReducer = combineReducers({
   taskReducer,
+  toggleReducer
 });
 
 export const storeSetup = () => {

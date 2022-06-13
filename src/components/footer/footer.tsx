@@ -7,30 +7,40 @@ import {
   filterCompletedTask,
   filterAllTask,
 } from "../../redux/taskSlice/taskSlice";
+import {
+  clickAll,
+  clickActive,
+  clickCompleted,
+} from "../../redux/toggleSlice/toggleSlice";
 import "./footer.scss";
+
 
 export const Footer: FC = () => {
   const dispatch = useDispatch();
   const { task } = useTypesSelector((state) => state.taskReducer);
+  const { active, completed, all } = useTypesSelector(
+    (state) => state.toggleReducer
+  );
+
   return (
     <div className="footer">
       <div className="footer__items">{task.length} items left</div>
-      <div className="footer__checkboxContainer">
+      <div className="footer__toggleContainer">
         <div
-          onClick={() => dispatch(filterAllTask())}
-          className="footer__checkbox "
+          onClick={() => (dispatch(filterAllTask()), dispatch(clickAll()))}
+          className={all ? "footer__toggle active" : "footer__toggle"}
         >
           All
         </div>
         <div
-          onClick={() => dispatch(filterActiveTask())}
-          className="footer__checkbox "
+          onClick={() => (dispatch(filterActiveTask()), dispatch(clickActive()))}
+          className={active ? "footer__toggle active" : "footer__toggle"}
         >
           Active
         </div>
         <div
-          onClick={() => dispatch(filterCompletedTask())}
-          className="footer__checkbox"
+          onClick={() => (dispatch(filterCompletedTask()), dispatch(clickCompleted()))}
+          className={completed ? "footer__toggle active" : "footer__toggle"}
         >
           Completed
         </div>
