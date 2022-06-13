@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import Button from '@mui/material/Button';
 import "./Input.scss";
 
 export const Input: FC = () => {
@@ -12,6 +13,7 @@ export const Input: FC = () => {
       ) : (
         <ArrowDropDownIcon onClick={() => setArrow(true)} className="arrow" />
       )}
+      <Button className="btn" variant="contained">Add</Button>
       <input className="input" placeholder="What needs to be done?"></input>
     </label>
   );
