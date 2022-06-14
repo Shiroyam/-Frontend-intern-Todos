@@ -1,0 +1,35 @@
+.footer {
+  box-sizing: border-box;
+  width: 452px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  padding: 0px 5px 0px 5px;
+
+  -webkit-box-shadow: 2px 6px 14px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 2px 6px 14px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 2px 6px 14px 0px rgba(34, 60, 80, 0.2);
+
+  &__toggleContainer {
+    width: 150px;
+    justify-content: space-between;
+    display: flex;
+    cursor: pointer;
+
+    .footer__toggle{
+      padding: 5px 5px 5px 5px;
+    }
+
+    .active {
+      background-color: #5282ff;
+      color: white;
+      border-radius: 2px;
+    }
+  }
+
+  &__clearBtn {
+    cursor: pointer;
+  }
+}
