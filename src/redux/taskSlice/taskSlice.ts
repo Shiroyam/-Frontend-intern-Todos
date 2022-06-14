@@ -1,6 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+interface Obj {
+  name: string;
+  completed: boolean;
+  id: string;
+}
+interface IState {
+  task: Array<Obj>;
+  filterBy: string;
+  flagTask: boolean;
+}
+
+const initialState: IState = {
   task: [
     {
       name: "Тестовое задание",
@@ -26,33 +37,33 @@ export const taskSlice = createSlice({
   name: "task",
   initialState,
   reducers: {
-    addTask(state: any, action: any) {
+    addTask(state: IState, action: PayloadAction<string>) {
       state.task.push({
         name: action.payload,
         completed: false,
-        id: Math.random(),
+        id: "" + Math.random(),
       });
     },
-    deleteTask(state: any) {
+    deleteTask(state: IState) {
       state.task = state.task.filter((obj: any) => !obj.completed);
     },
-    filterActiveTask(state: any) {
+    filterActiveTask(state: IState) {
       state.filterBy = "Active";
     },
-    filterCompletedTask(state: any) {
+    filterCompletedTask(state: IState) {
       state.filterBy = "Completed";
     },
-    filterAllTask(state: any) {
+    filterAllTask(state: IState) {
       state.filterBy = "All";
     },
-    checkbox(state: any, action: any) {
+    checkbox(state: IState, action: PayloadAction<string>) {
       state.task.map((obj: any) => {
         if (obj.id === action.payload) {
           obj.completed = !obj.completed;
         }
       });
     },
-    showTask(state: any) {
+    showTask(state: IState) {
       state.flagTask = !state.flagTask;
     },
   },

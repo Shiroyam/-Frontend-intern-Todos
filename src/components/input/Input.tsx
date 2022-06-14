@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, MouseEvent, useState } from "react";
 import { addTask, showTask } from "../../redux/taskSlice/taskSlice";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
@@ -7,11 +7,11 @@ import "./Input.scss";
 import { useDispatch } from "react-redux";
 
 export const Input: FC = () => {
-  const [arrow, setArrow] = useState(true);
-  const [value, setValue] = useState("");
+  const [arrow, setArrow] = useState<boolean>(true);
+  const [value, setValue] = useState<string>("");
   const dispatch = useDispatch();
 
-  const clickArrow = (e: any) => {
+  const clickArrow = (e: MouseEvent) => {
     e.preventDefault();
     setArrow(!arrow);
     dispatch(showTask());
