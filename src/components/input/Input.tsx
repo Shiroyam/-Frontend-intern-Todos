@@ -20,9 +20,9 @@ export const Input: FC = () => {
   return (
     <label>
       {!arrow ? (
-        <ArrowDropUpIcon onClick={clickArrow} className="arrow" />
+        <ArrowDropUpIcon data-testid="arrowclose-btn" onClick={clickArrow} className="arrow" />
       ) : (
-        <ArrowDropDownIcon onClick={clickArrow} className="arrow" />
+        <ArrowDropDownIcon data-testid="arrowopen-btn" onClick={clickArrow} className="arrow" />
       )}
       <Button
         onClick={() => (dispatch(addTask(value)), setValue(""))}

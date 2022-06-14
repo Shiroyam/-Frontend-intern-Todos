@@ -29,7 +29,13 @@ export const Task: FC = () => {
             }
           })
           .map((task) => (
-            <div key={task.id} className="task">
+            <div
+              role="checkbox"
+              aria-checked={task.completed}
+              data-testid="task-test"
+              key={task.id}
+              className="task"
+            >
               <Checkbox
                 checked={task.completed}
                 onChange={() => dispatch(checkbox(task.id))}
@@ -46,3 +52,5 @@ export const Task: FC = () => {
     </>
   );
 };
+
+export default Task;

@@ -14,7 +14,6 @@ import {
 } from "../../redux/toggleSlice/toggleSlice";
 import "./footer.scss";
 
-
 export const Footer: FC = () => {
   const dispatch = useDispatch();
   const { task } = useTypesSelector((state) => state.taskReducer);
@@ -27,25 +26,36 @@ export const Footer: FC = () => {
       <div className="footer__items">{task.length} items left</div>
       <div className="footer__toggleContainer">
         <div
+          data-testid="all-btn"
           onClick={() => (dispatch(filterAllTask()), dispatch(clickAll()))}
           className={all ? "footer__toggle active" : "footer__toggle"}
         >
           All
         </div>
         <div
-          onClick={() => (dispatch(filterActiveTask()), dispatch(clickActive()))}
+          data-testid="active-btn"
+          onClick={() => (
+            dispatch(filterActiveTask()), dispatch(clickActive())
+          )}
           className={active ? "footer__toggle active" : "footer__toggle"}
         >
           Active
         </div>
         <div
-          onClick={() => (dispatch(filterCompletedTask()), dispatch(clickCompleted()))}
+          data-testid="completed-btn"
+          onClick={() => (
+            dispatch(filterCompletedTask()), dispatch(clickCompleted())
+          )}
           className={completed ? "footer__toggle active" : "footer__toggle"}
         >
           Completed
         </div>
       </div>
-      <div onClick={() => dispatch(deleteTask())} className="footer__clearBtn">
+      <div
+        data-testid="clear-btn"
+        onClick={() => dispatch(deleteTask())}
+        className="footer__clearBtn"
+      >
         Clear completed
       </div>
     </div>
